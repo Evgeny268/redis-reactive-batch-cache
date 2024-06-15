@@ -15,7 +15,9 @@ public interface ReactiveRedisCache {
 
     Mono<Void> clear();
 
-    Mono<Void> invalidate();
+    default Mono<Void> invalidate() {
+        return clear();
+    }
 
     default Mono<Object> getMono(Object key) {
         return get(key);
